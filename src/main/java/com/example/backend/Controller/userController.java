@@ -113,7 +113,7 @@ public class userController {
 	
 	
 
-	@GetMapping(value = "/publish")
+	@GetMapping("/users/kafka")
 	public void sendMessageToKafkaTopic(@RequestParam("message") String message) {
 		this.producer.produce(message);
 	}
