@@ -6,10 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 //map Java Class => Database Table
 @Entity
-@Table(name = "user_track")
+@Table(name = "userteacj")
 public class User {
 
 	// define data model
@@ -19,12 +20,15 @@ public class User {
 	private int id;
 
 	@Column(name = "username")
+	@NotEmpty(message = "Username must not be empty")
 	private String username;
 
 	@Column(name = "password")
+	@NotEmpty(message = "Passwoed must not be empty")
 	private String password;
 
 	@Column(name = "email")
+	@NotEmpty(message = "Email must not be empty")
 	private String email;
 
 	// define default contractor
