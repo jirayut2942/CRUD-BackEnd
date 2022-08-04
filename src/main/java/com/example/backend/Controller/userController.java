@@ -12,16 +12,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.Model.User;
 import com.example.backend.Service.userService;
-
+import com.example.backend.Service.Producer;
 @RestController
 @RequestMapping("/api/v1")
 public class userController {
 
 	private userService userService;
+	
+	@Autowired
+	private Producer producer;
 
 	@Autowired
 	public userController(userService theUserService) {
@@ -106,5 +110,13 @@ public class userController {
 
 		return "Delete By ID: " + userId;
 	}
+	
+	
 
+	@GetMapping(value = "/publish")
+	public void sendMessageToKafkaTopic(@RequestParam("message") String message) {
+		this.producer.produce(message);
+	}
 }
+
+
