@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/svc_backend_team
+    username: postgres
+    password: wE1dhomxef
