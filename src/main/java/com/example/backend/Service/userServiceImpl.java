@@ -52,7 +52,6 @@ public class userServiceImpl implements userService {
 	}
 
 	@Override
-	@CachePut(key = "#theId", value = "username")
 	public User save(User theUser) {
 		Optional<User> saveUser = userRepo.findById(theUser.getId());
 
