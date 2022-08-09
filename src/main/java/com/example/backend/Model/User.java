@@ -8,9 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+
 //map Java Class => Database Table
 @Entity
-@Table(name = "userteacj")
+@Table(name = "user_track")
 public class User {
 
 	// define data model
@@ -30,17 +38,6 @@ public class User {
 	@Column(name = "email")
 	@NotEmpty(message = "Email must not be empty")
 	private String email;
-
-	// define default contractor
-	public User() {
-	}
-
-	public User(int id, String username, String password, String email) {
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.email = email;
-	}
 
 	public int getId() {
 		return id;

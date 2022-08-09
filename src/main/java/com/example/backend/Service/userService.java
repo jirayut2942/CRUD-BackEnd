@@ -9,7 +9,7 @@ public interface userService {
 
 	public User findById(int theId);
 
-	public void save(User theUser);
+	public User save(User theUser);
 
 	public void deleteById(int theId);
 

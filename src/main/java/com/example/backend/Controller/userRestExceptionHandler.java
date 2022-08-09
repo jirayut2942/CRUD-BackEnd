@@ -51,25 +51,7 @@ public class userRestExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 
-	@ExceptionHandler
-	public ResponseEntity<userErrorResponse> handleException(userMethodArgumentNotValid exc) {
 
-		// create a StudentErrorResponse
-		userErrorResponse error = new userErrorResponse();
-
-		error.setStatus(HttpStatus.BAD_REQUEST.value());
-		error.setMessage(exc.getMessage());
-		error.setTimeStamp(System.currentTimeMillis());
-
-		// return ResponseEntity
-		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
-	}
-
-	public userRestExceptionHandler() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {

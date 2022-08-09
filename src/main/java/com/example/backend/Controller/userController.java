@@ -45,36 +45,26 @@ public class userController {
 	}
 
 	// create User POST : 1.7
-//	@PostMapping("/users")
-//	public User addUser(@RequestBody User theUser) {
-//		theUser.setId(0);
-//
-//		userService.save(theUser);
-//
-//		return theUser;
-//	}
-
 	@PostMapping("/users")
-	public ResponseEntity<User> addEmployee(@Valid @RequestBody User theUser) {
+	public ResponseEntity<User> addUser(@Valid @RequestBody User theUser) {
+
 		theUser.setId(0);
-		//
+
 		userService.save(theUser);
-		//
-		return new ResponseEntity<User>(theUser, HttpStatus.OK);
+
+		return new ResponseEntity<User>(theUser, HttpStatus.CREATED);
 	}
 
 	// find by id
 	@GetMapping("/users/{userId}")
-	public User findUsersById(@PathVariable int userId) {
-		try {
-			User theUser = userService.findById(userId);
+	public User findUsersById(@PathVariable int userId) throws userNotFoundException {
+		User theUser = userService.findById(userId);
 
-			return theUser;
-		} catch (Exception e) {
-//			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User Not Found By ID: " + userId, e);
-			throw new userNotFoundException("User id not found - " + userId);
+		if (theUser == null) {
+			throw new userNotFoundException("User Id not found - " + userId);
 		}
 
+		return theUser;
 	}
 
 	// find All
@@ -107,7 +97,6 @@ public class userController {
 			User theUser = userService.findById(userId);
 
 			theUser.setUsername(newtheUser.getUsername());
-//			theUser.setEmail(newtheUser.getEmail());
 			userService.save(theUser);
 
 			return theUser;

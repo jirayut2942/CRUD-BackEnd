@@ -6,13 +6,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.backend.Controller.userNotFoundException;
 import com.example.backend.Model.User;
 import com.example.backend.Repository.userRepository;
 
 @Service
 public class userServiceImpl implements userService {
 
-	userRepository userRepo;
+	private userRepository userRepo;
 
 	@Autowired
 	public userServiceImpl(userRepository theUserRepo) {
@@ -33,16 +34,18 @@ public class userServiceImpl implements userService {
 		if (result.isPresent()) {
 			theUser = result.get();
 		} else {
-			// we didn't find the employee
-			throw new RuntimeException("Did not find user id- " + theId);
+			// we didn't find the User
+			throw new userNotFoundException("Did not find user id- " + theId);
 		}
 
 		return theUser;
 	}
 
 	@Override
-	public void save(User theUser) {
-		userRepo.save(theUser);
+	public User save(User theUser) {
+		Optional<User> saveUser = userRepo.findById(theUser.getId());
+
+		return userRepo.save(theUser);
 
 	}
 

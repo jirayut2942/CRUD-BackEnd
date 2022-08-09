@@ -7,6 +7,10 @@ public class userResponse {
 	private String message;
 	private Object errors;
 
+	public userResponse() {
+
+	}
+
 	public userResponse(HttpStatus status, String message, Object errors) {
 		super();
 		this.status = status;
