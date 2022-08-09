@@ -1,5 +1,7 @@
 package com.example.backend.Model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +21,7 @@ import lombok.NoArgsConstructor;
 //map Java Class => Database Table
 @Entity
 @Table(name = "user_track")
-public class User {
+public class User implements Serializable{
 
 	// define data model
 	@Id
