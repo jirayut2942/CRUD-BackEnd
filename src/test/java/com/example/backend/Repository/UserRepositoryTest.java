@@ -50,8 +50,8 @@ public class UserRepositoryTest {
 
 		// then
 		assertThat(userList).isNotNull();
-		// have 2 row in database then accept 4
-		assertThat(userList.size()).isEqualTo(5);
+		// base n in data rows
+		assertThat(userList.size()).isEqualTo(3);
 	}
 
 	@DisplayName("JUnit test for get User By Id")

@@ -76,7 +76,7 @@ public class UserControllerTest {
 	public void givenUserId_whenFindById_thenReturnUserObject() throws Exception {
 		// given - precondition or setup
 		int userId = 1;
-		User user = User.builder().username("Jirayut").password("123").email("jirayut@gmail.com").build();
+		User user = User.builder().username("jirayut").password("123").email("jirayut@gmail.com").build();
 
 		given(userRepository.findById(userId)).willReturn(Optional.of(user));
 
