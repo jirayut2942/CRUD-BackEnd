@@ -131,4 +131,26 @@ public class userController {
 	public void sendMessageToKafkaTopic(@RequestParam("message") String message) {
 		this.producer.produce(message);
 	}
+
+	// kafka message with retry demonstration
+	@GetMapping("/users/kafka/retry")
+	public ResponseEntity<String> sendMessageWithRetry(@RequestParam("message") String message) {
+		try {
+			this.producer.produce(message);
+			return ResponseEntity.ok("Message sent successfully with retry capability");
+		} catch (Exception e) {
+			return ResponseEntity.status(500).body("Failed to send message after all retry attempts: " + e.getMessage());
+		}
+	}
+
+	// kafka message with manual retry
+	@GetMapping("/users/kafka/manual-retry")
+	public ResponseEntity<String> sendMessageWithManualRetry(@RequestParam("message") String message) {
+		try {
+			this.producer.produceWithManualRetry(message);
+			return ResponseEntity.ok("Message sent successfully with manual retry logic");
+		} catch (Exception e) {
+			return ResponseEntity.status(500).body("Failed to send message after all manual retry attempts: " + e.getMessage());
+		}
+	}
 }
